@@ -2,8 +2,6 @@ package main
 
 import (
 	"net/http"
-    "os"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -56,13 +54,6 @@ func main() {
 		c.JSON(http.StatusCreated, t)
 	})
 
-	// 健康检查（AWS 用）
-	r.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Fin智账 API is running 🚀")
-	})
-    port := os.Getenv("PORT")
-    if port  == "" {
-        port = "8080"
-    }
-	r.Run(":" + port) // AWS Elastic Beanstalk 默认端口
+
+	r.Run(":8080") // AWS Elastic Beanstalk 默认端口
 }
